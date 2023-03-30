@@ -31,14 +31,14 @@ public class Image_Load : MonoBehaviour
     /// <param name="newWidth"></param>
     /// <param name="newHeight"></param>
     /// <returns></returns>
-    public static Texture2D Resize(Texture2D source, int newWidth, int newHeight)
+    public static Texture2D Resize(Texture2D source, int newWidth, int newHeight, FilterMode filterMode = FilterMode.Point)
     {
         //create temporary texture that can be freed up later
         RenderTexture rt = RenderTexture.GetTemporary(newWidth, newHeight);
 
         //use same filtering, can be changed to bi/trilinear
-        source.filterMode = FilterMode.Point;
-        rt.filterMode = FilterMode.Point;
+        source.filterMode = filterMode;
+        rt.filterMode = filterMode;
         
         //blit source onto temp texture and read the pixels using resized dimensions
         RenderTexture.active = rt;
